@@ -20,6 +20,11 @@ export const HomeTitle = styled.h1`
 
 export const CoffeesList = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, minmax(16rem, 1fr));
+  //grid-template-columns: repeat(4, minmax(16rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
   gap: 2rem;
+
+  /* @media (max-width: 1136px) {
+    margin: 0 auto;
+  } */
 `

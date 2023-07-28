@@ -22,6 +22,16 @@ export const InfoContainerBackground = styled.div`
     background-image: inherit;
     filter: blur(80px);
     z-index: -1;
+
+    @media (max-width: 1136px) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 1136px) {
+    height: auto;
+    position: static;
+    background: none;
   }
 `
 
@@ -41,6 +51,12 @@ export const InfoContainerContent = styled.div`
   box-shadow:
     20px 20px 40px 20px rgba(250, 250, 250, 0.25) inset,
     -20px -20px 40px 20px rgba(250, 250, 250, 0.25) inset;
+
+  @media (max-width: 1136px) {
+    position: static;
+    padding: 0;
+    display: block;
+  }
 `
 
 export const InfoContainer = styled.section`
@@ -50,6 +66,15 @@ export const InfoContainer = styled.section`
   justify-content: center;
 
   gap: 3.5rem;
+
+  @media (max-width: 1136px) {
+    flex-direction: column-reverse;
+    gap: 1rem;
+
+    & img {
+      width: 90%;
+    }
+  }
 `
 
 export const InfoTextContainer = styled.div`
@@ -71,6 +96,10 @@ export const InfoTitle = styled.h1`
   color: ${(props) => props.theme.colors['base-title']};
 
   filter: blur(0px);
+
+  @media (max-width: 1136px) {
+    font-size: 2.5rem;
+  }
 `
 
 export const InfoSubTitle = styled.h2`
@@ -79,6 +108,10 @@ export const InfoSubTitle = styled.h2`
   font-weight: 400;
   line-height: 1.3;
   margin-top: 1rem;
+
+  @media (max-width: 1136px) {
+    font-size: 1rem;
+  }
 `
 
 export const TopicsContainer = styled.div`
@@ -87,6 +120,11 @@ export const TopicsContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   row-gap: 1.25rem;
   column-gap: 2.5rem;
+
+  @media (max-width: 1136px) {
+    grid-template-columns: 1fr;
+    margin-top: 2rem;
+  }
 `
 
 export const TopicsItem = styled.span<TopicsItemProps>`
