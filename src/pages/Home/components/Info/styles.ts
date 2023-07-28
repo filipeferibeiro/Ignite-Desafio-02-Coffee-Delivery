@@ -43,7 +43,7 @@ export const InfoContainerContent = styled.div`
     -20px -20px 40px 20px rgba(250, 250, 250, 0.25) inset;
 `
 
-export const InfoContainer = styled.div`
+export const InfoContainer = styled.section`
   max-width: 71rem;
   display: flex;
   align-items: center;
