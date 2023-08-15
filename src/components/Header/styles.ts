@@ -32,9 +32,11 @@ export const PlaceLocationIndicator = styled.span`
 
 export const CartButton = styled(NavLink)`
   position: relative;
-  width: 2.375rem;
-  height: 2.375rem;
-  padding: 0.5rem;
+  min-width: 44px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   border-radius: 6px;
   background: ${(props) => props.theme.colors['yellow-light']};
@@ -45,6 +47,10 @@ export const CartButton = styled(NavLink)`
   transition:
     background-color 0.2s,
     color 0.2s;
+
+  svg {
+    margin: 0.5rem;
+  }
 
   &:hover {
     background: ${(props) => props.theme.colors['yellow-dark']};
