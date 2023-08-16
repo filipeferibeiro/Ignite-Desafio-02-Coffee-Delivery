@@ -1,17 +1,22 @@
 import styled from 'styled-components'
 
-interface InfoCardDescriptionProps {
-  color: 'purple' | 'yellow-dark'
-}
-
 export const CartContainer = styled.div`
   max-width: 71rem;
   margin: 2.5rem auto;
 
   display: grid;
   grid-template-columns: 1fr 28rem;
-  row-gap: 0.94rem;
   column-gap: 2rem;
+
+  @media (max-width: 1136px) {
+    grid-template-columns: 1fr;
+  }
+`
+
+export const CartSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 0.94rem;
 `
 
 export const SectionTitle = styled.h3`
@@ -32,7 +37,7 @@ const CartCard = styled.div`
   display: flex;
   flex-direction: column;
   padding: 2.5rem;
-  gap: 2rem;
+  gap: 1.5rem;
   background: ${(props) => props.theme.colors['base-card']};
 `
 
@@ -42,30 +47,6 @@ export const CartCardInfo = styled(CartCard)`
 
 export const CartCardResume = styled(CartCard)`
   border-radius: 6px 44px;
-`
-
-export const InfoCardDescription = styled.div<InfoCardDescriptionProps>`
-  display: flex;
-  gap: 0.5rem;
-
-  svg {
-    color: ${(props) => props.theme.colors[props.color]};
-  }
-`
-
-export const InfoCardDescriptionTexts = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.12rem;
-
-  p {
-    color: ${(props) => props.theme.colors['base-subtitle']};
-  }
-
-  p + p {
-    font-size: 0.875rem;
-    color: ${(props) => props.theme.colors['base-text']};
-  }
 `
 
 export const PaymentSelectionContainer = styled.div`
@@ -107,5 +88,111 @@ export const PaymentSelection = styled.label`
   &:has(input[type='radio']:checked) {
     border: 1px solid ${(props) => props.theme.colors.purple};
     background: ${(props) => props.theme.colors['purple-light']};
+  }
+`
+
+export const AddressForm = styled.form`
+  display: grid;
+  grid-template-columns: 12.5rem 1fr 3.75rem;
+  gap: 1rem;
+
+  grid-template-areas:
+    'zipCode . .'
+    'street street street'
+    'number complement complement'
+    'neighborhood city state';
+
+  input {
+    padding: 0.75rem;
+    border-radius: 4px;
+    background: ${(props) => props.theme.colors['base-input']};
+    border: 1px solid ${(props) => props.theme.colors['base-button']};
+    font-size: 0.875rem;
+    color: ${(props) => props.theme.colors['base-text']};
+
+    &::placeholder {
+      color: ${(props) => props.theme.colors['base-label']};
+    }
+  }
+
+  @media (max-width: 1136px) {
+    grid-template-areas:
+      'zipCode zipCode zipCode'
+      'street street street'
+      'number number number'
+      'complement complement complement'
+      'neighborhood neighborhood neighborhood'
+      'city city state';
+  }
+
+  #zip-code {
+    grid-area: zipCode;
+  }
+  #street {
+    grid-area: street;
+  }
+  #number {
+    grid-area: number;
+  }
+  #complement {
+    grid-area: complement;
+  }
+  #neighborhood {
+    grid-area: neighborhood;
+  }
+  #city {
+    grid-area: city;
+  }
+  #state {
+    grid-area: state;
+  }
+`
+
+export const CoffeeCardDivider = styled.hr`
+  border: 1px solid ${(props) => props.theme.colors['base-button']};
+`
+
+export const ResumeValues = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+`
+
+export const ResumeTextValue = styled.p`
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 0.875rem;
+
+  color: ${(props) => props.theme.colors['base-text']};
+`
+
+export const ResumeTotalValue = styled.h2`
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 1.25rem;
+  font-weight: 700;
+
+  color: ${(props) => props.theme.colors['base-subtitle']};
+`
+
+export const SubmitButton = styled.button`
+  padding: 0.75rem 0.5rem;
+  border-radius: 6px;
+  border: none;
+  background: ${(props) => props.theme.colors.yellow};
+
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: ${(props) => props.theme.colors.white};
+
+  cursor: pointer;
+
+  transition: background-color 0.1s;
+
+  &:hover {
+    background: ${(props) => props.theme.colors['yellow-dark']};
   }
 `
