@@ -7,19 +7,24 @@ import {
   ResumeCoffeeCardContainer,
 } from './styles'
 
-import CoffeeImg from '../../../../assets/coffees/arabe.png'
 import { QuantitySelector } from '../../../../components/QuantitySelector'
 import { useState } from 'react'
 import { Trash } from 'phosphor-react'
+import { Coffee } from '../../../../model/CoffeeDataModel'
 
-export function ResumeCoffeeCard() {
-  const [quantity, setQuantity] = useState(0)
+interface ResumeCoffeeProps {
+  coffee: Coffee
+  quantityValue: number
+}
+
+export function ResumeCoffeeCard({ coffee, quantityValue }: ResumeCoffeeProps) {
+  const [quantity, setQuantity] = useState(quantityValue)
 
   function handleChangeQuantity(delta: number) {
     setQuantity((state) => {
       const newQuantity = state + delta
 
-      if (newQuantity < 0 || newQuantity > 10) {
+      if (newQuantity < 1 || newQuantity > 10) {
         return state
       }
 
@@ -30,9 +35,9 @@ export function ResumeCoffeeCard() {
   return (
     <ResumeCoffeeCardContainer>
       <CardLeftContent>
-        <img src={CoffeeImg} alt="" />
+        <img src={coffee.imageURL} alt="" />
         <CardDescriptionContent>
-          <p>Expresso Tradicional</p>
+          <p>{coffee.name}</p>
           <CardActionsContent>
             <QuantitySelector
               quantity={quantity}

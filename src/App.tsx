@@ -4,12 +4,15 @@ import { Router } from './Router'
 
 import { defaultTheme } from './styles/themes/default'
 import { GlobalStyle } from './styles/global'
+import { CoffeeCartContextProvider } from './contexts/CoffeeCartContext'
 
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
-        <Router />
+        <CoffeeCartContextProvider>
+          <Router />
+        </CoffeeCartContextProvider>
       </BrowserRouter>
 
       <GlobalStyle />

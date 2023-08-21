@@ -14,7 +14,8 @@ import {
   CoffeeCardBuyActions,
   CoffeeCardCartButton,
 } from './styles'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { CoffeeCartContext } from '../../contexts/CoffeeCartContext'
 
 interface CoffeeCardProps {
   coffee: Coffee
@@ -22,6 +23,12 @@ interface CoffeeCardProps {
 
 export function CoffeeCard({ coffee }: CoffeeCardProps) {
   const [quantity, setQuantity] = useState(0)
+  const { addNewCoffeeOnCart } = useContext(CoffeeCartContext)
+
+  function handleAddNewCoffeeOnCart() {
+    addNewCoffeeOnCart(coffee, quantity)
+    setQuantity(0)
+  }
 
   function handleChangeQuantity(delta: number) {
     setQuantity((state) => {
@@ -58,7 +65,10 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
             quantity={quantity}
             changeQuantity={handleChangeQuantity}
           />
-          <CoffeeCardCartButton disabled={isCartButtonDisabled}>
+          <CoffeeCardCartButton
+            onClick={handleAddNewCoffeeOnCart}
+            disabled={isCartButtonDisabled}
+          >
             <ShoppingCart size={22} weight="fill" />
           </CoffeeCardCartButton>
         </CoffeeCardBuyActions>

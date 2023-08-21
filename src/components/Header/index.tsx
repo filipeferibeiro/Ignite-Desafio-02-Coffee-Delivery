@@ -10,8 +10,12 @@ import {
   HeaderContainer,
   PlaceLocationIndicator,
 } from './styles'
+import { useContext } from 'react'
+import { CoffeeCartContext } from '../../contexts/CoffeeCartContext'
 
 export function Header() {
+  const { cartSize } = useContext(CoffeeCartContext)
+
   return (
     <HeaderContainer>
       <NavLink to="/">
@@ -24,7 +28,7 @@ export function Header() {
         </PlaceLocationIndicator>
         <CartButton to="/cart">
           <ShoppingCart size={22} weight="fill" />
-          <CartButtonCounter>0</CartButtonCounter>
+          {!!cartSize && <CartButtonCounter>{cartSize}</CartButtonCounter>}
         </CartButton>
       </HeaderActionItemsContainer>
     </HeaderContainer>

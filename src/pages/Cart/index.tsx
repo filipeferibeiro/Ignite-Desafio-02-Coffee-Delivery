@@ -21,10 +21,20 @@ import {
   SectionTitle,
   SubmitButton,
 } from './styles'
+import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { InfoCardDescription } from './components/InfoCardDescription'
 import { ResumeCoffeeCard } from './components/ResumeCoffeeCard'
+import { CoffeeCartContext } from '../../contexts/CoffeeCartContext'
 
 export function Cart() {
+  const { cart } = useContext(CoffeeCartContext)
+  const navigate = useNavigate()
+
+  function handleSendOrder() {
+    navigate('/success')
+  }
+
   return (
     <CartContainer>
       <CartSection>
@@ -78,12 +88,15 @@ export function Cart() {
       <CartSection>
         <SectionTitle>Cafés selecionados</SectionTitle>
         <CartCardResume>
-          <ResumeCoffeeCard />
-          <CoffeeCardDivider />
-          <ResumeCoffeeCard />
-          <CoffeeCardDivider />
-          <ResumeCoffeeCard />
-          <CoffeeCardDivider />
+          {cart.map((item) => (
+            <>
+              <ResumeCoffeeCard
+                coffee={item.coffeeModel}
+                quantityValue={item.quantity}
+              />
+              <CoffeeCardDivider />
+            </>
+          ))}
           <ResumeValues>
             <ResumeTextValue>
               <span>Total de itens</span>
@@ -98,7 +111,9 @@ export function Cart() {
               <span>R$ 33,20</span>
             </ResumeTotalValue>
           </ResumeValues>
-          <SubmitButton>confirmar pedido</SubmitButton>
+          <SubmitButton onClick={handleSendOrder}>
+            confirmar pedido
+          </SubmitButton>
         </CartCardResume>
       </CartSection>
     </CartContainer>
